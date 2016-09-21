@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	{{post.render() | safe}}
+
+	<!-- The Modal example code from w3schools.com -->
+	<div id="myModal" class="modal">
+
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span class="close">x</span>
+	    <form method="post">
+	    	<label><div id="message">Are you sure you wish to delete this {{entity}}?</div>
+	    	<br>
+	    	<input id="yes-button" type="submit" name="delete" value="yes">
+	    	&nbsp
+	    	<input id="no-button" type="submit" name="delete" value="no">
+	    	</label>
+    	</form>
+	  </div>
+	</div>
+	<script src="/static/js/confirm-delete-modal.js"></script>
+{% endblock %}

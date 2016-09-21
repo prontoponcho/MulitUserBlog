@@ -1,0 +1,106 @@
+<div class="post">
+  <div class="post-heading">
+
+    <div class="post-title">
+
+      {{post.subject}}
+
+    </div>
+
+    <div class="post-date">
+      <i>Created by {{post.creator_name()}} on {{post.created.strftime("%b %d, %Y")}}</i>
+    </div>
+
+    <div class="post-last-modified">
+        <i>
+          Edited:
+          {% if post.is_modified() %}
+
+          {{post.last_modified.strftime("%b %d, %Y")}}
+
+          {% else %}
+
+          never
+
+          {% endif %}
+        </i>
+    </div>
+
+  </div>
+
+  <div class="post-content">
+
+    {{post._render_text | safe}}
+
+  </div>
+
+  <div class="post-footer">
+
+    <div class="post-likes">
+
+      {% if post.likes != None %}
+
+        {{post.likes}}
+
+        {% if post.likes == 1 %}
+
+          like
+
+        {% else %}
+
+          likes
+
+        {% endif %}
+
+      {% else %}
+
+        0
+
+      {% endif %}
+
+    </div>
+
+    <div class="footer-links">
+      <br>
+      <a class="footer-link" href="/blog/comment-post/{{post.key().id()}}">
+        comment
+      </a>
+      |
+      <a class="footer-link" href="/blog/like-post/{{post.key().id()}}">
+        like
+      </a>
+      |
+      <a class="footer-link" href="/blog/unlike-post/{{post.key().id()}}">
+        unlike
+      </a>
+      |
+      <a class="footer-link" href="/blog/edit-post/{{post.key().id()}}">
+        edit
+      </a>
+      |
+      <a class="footer-link" href="/blog/delete-post/{{post.key().id()}}">
+        delete
+      </a>
+    </div> <!-- footer-links -->
+
+  </div>
+
+  <div class="post-comments">
+
+    {% for comment in post.get_comments() %}
+
+        <i> {{ comment.to_string() }} </i>
+        <a class="footer-link" href="/blog/edit-comment/{{comment.key().id()}}">
+          edit
+        </a>
+        |
+        <a class="footer-link" href="/blog/delete-comment/{{comment.key().id()}}">
+          delete
+        </a>      
+        <br>
+
+    {% endfor %}
+
+  </div>
+
+</div>
