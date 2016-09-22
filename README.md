@@ -13,6 +13,6 @@
 ```
 > python "/PATH/TO/google_appengine/dev_appserver.py "/PATH/TO/MultiUserBlog"
 ```
-Then open a browser and go to http://localhost:8080/blog
+Then open a browser and go to http://localhost:8080/blog or whatever default port number your google appengine uses.
 
 ####To visit the live application, go to: http://blog-144100.appspot.com/blog
