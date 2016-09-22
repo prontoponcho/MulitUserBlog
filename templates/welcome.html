@@ -1,13 +1,9 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
-  <head>
-    <title>Blog Welcome Page</title>
-    <link rel="stylesheet" type="text/css" href="/static/main.css">
-  </head>
+{% block content %}
 
   <body>
     <h2>Welcome, {{username}}!</h2>
     <h3><a class="generic-link " href="/blog">Get Blog'n</a></h3>
-  </body>
-</html>
+
+{% endblock %}

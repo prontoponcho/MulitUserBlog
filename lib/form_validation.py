@@ -14,9 +14,9 @@ def valid_email(email):
 
 CONTENT_RE = re.compile(r"^[\W\sa-zA-Z0-9_-]{10,1000}$")
 def valid_content(content):
-	return content and CONTENT_RE.match(content)
+	return content and len(content) < 1000
 
-SUBJECT_RE = re.compile(r"^[a-zA-Z0-9_-]{3,30}$")
+SUBJECT_RE = re.compile(r"^[\W\sa-zA-Z0-9_-]{3,30}$")
 def valid_subject(subject):
 	return subject and SUBJECT_RE.match(subject)
 

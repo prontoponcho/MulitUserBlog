@@ -1,17 +1,7 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
-  <head>
-    <title>Sign Up</title>
-    <link rel="stylesheet" type="text/css" href="/static/main.css">
-<!--     <style type="text/css">
-      .label {text-align: right}
-      .error {color: red}
-    </style> -->
+{% block content %}
 
-  </head>
-
-  <body>
     <h2>Signup <a class="generic-link" href="/login">Or Login</a></h2>
     <form method="post">
       <table>
@@ -66,6 +56,6 @@
 
       <input type="submit">
     </form>
-  </body>
 
-</html>
+{% endblock %}
+
