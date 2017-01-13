@@ -1,5 +1,19 @@
 # MultiUserBlog
+###Blog application with account signup, user authentication, posting, commenting, and likes. 
+####Contents:
+<ul>
+  <li>handlers/ divides the meat of the application into four scripts: base, account, blogpost, and comment.
+  <li>lib/ contains scripts for form validation, password hashing, and cookie authentication
+  <li>models/ contains scripts for google datastore entities User, Post, and Comment
+  <li>static/ contains the application's static resources like javascript and css
+  <li>templates/ contains the html and forms that inherit from base.html using jinja2 templating
+  <li>the remaining files are google appengine boilerplate
+</ul>
+####To deploy the local developer version, install google appengine and from the command line enter:
+```
+> python "/PATH/TO/google_appengine/dev_appserver.py "/PATH/TO/MultiUserBlog"
+```
+Then open a browser and go to http://localhost:8080/blog 
+You may need to change port 8080 to the default port your google appengine uses.
 
-This project touched on topics like user account management, cookie authentication, password hashing, form validation, database management, templating with jinja2, google app engine, google datastore, and (probably) more! The server side code is written in Python while the front end code is mostly straight forward HTML/CSS with a little Javascript used for modals.
-
-Hosted at: http://blog-144100.appspot.com/blog
+####To visit the live application, go to: http://blog-144100.appspot.com/blog
