@@ -2,6 +2,7 @@ from base import MainHandler
 from lib import form_validation as v
 from models import user as u
 
+
 class Signup(MainHandler):
     def get(self):
         self.render("signup-form.html")
@@ -17,11 +18,14 @@ class Signup(MainHandler):
                       email=self.email)
 
         if not v.valid_username(self.username):
-            params['error_username'] = "That's not a valid username."
+            params['error_username'] = "That's not a valid username. " + \
+                "Usernames must be 3-20 characters long and may contain " + \
+                "only letters, numbers, underscores, or dashes."
             have_error = True
 
         if not v.valid_password(self.password):
-            params['error_password'] = "That's not a valid password."
+            params['error_password'] = "That's not a valid password. " + \
+                "Passwords must 3-20 characters long."
             have_error = True
         elif self.password != self.verify:
             params['error_verify'] = "Your passwords didn't match."
@@ -39,19 +43,21 @@ class Signup(MainHandler):
     def done(self, *a, **kw):
         raise NotImplementedError
 
+
 class Register(Signup):
     def done(self):
-        #make sure the user doesn't already exist
+        # make sure the user doesn't already exist
         usr = u.User.by_name(self.username)
         if usr:
             msg = 'That user already exists.'
-            self.render('signup-form.html', error_username = msg)
+            self.render('signup-form.html', error_username=msg)
         else:
             usr = u.User.register(self.username, self.password, self.email)
             usr.put()
 
             self.login(usr)
             self.redirect('/welcome')
+
 
 class Login(MainHandler):
     def get(self):
@@ -67,12 +73,14 @@ class Login(MainHandler):
             self.redirect('/welcome')
         else:
             msg = 'Invalid login'
-            self.render('login-form.html', error = msg)
+            self.render('login-form.html', error=msg)
+
 
 class Logout(MainHandler):
     def get(self):
         self.logout()
         self.redirect('/blog')
+
 
 class Welcome(MainHandler):
     def get(self):
